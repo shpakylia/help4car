@@ -1,3 +1,5 @@
+var gulp = require('gulp');
+
 var elixir = require('laravel-elixir');
 
 /*
@@ -13,4 +15,8 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
     mix.sass('app.scss');
+    mix.sass('admin.scss');
+    mix.styles(['app.css'],null, 'public/css');
+
+    mix.version('public/css/all.css');
 });

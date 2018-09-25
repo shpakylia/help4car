@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel Quickstart - Intermediate</title>
+    <title>{{ config('app.site_name') }}</title>
 
     <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
@@ -13,8 +13,15 @@
 
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+    <link href="{{ elixir('css/all.css') }}" rel="stylesheet">
 
+    <!-- JavaScripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- bootstrap js-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    @yield('inside_css')
     <style>
         body {
             font-family: 'Lato';
@@ -26,56 +33,62 @@
     </style>
 </head>
 <body id="app-layout">
-    <nav class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
-
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Task List
-                </a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
-                        </li>
-                    @endif
-                </ul>
-            </div>
+<div class="container-fluid">
+    <a href="/">
+        <div class="brand col-sm-2">
+               <img  class="brand_img" src="{{asset('img/help4car_logo.svg')}}" alt="brand">
         </div>
-    </nav>
+    </a>
+    <div class="location col-sm-offset-1 col-sm-2">
+        <p>Где мы:</p>
+        <div>
+            <p>г.&nbsp;Киев,</p>
+            <p>м.&nbsp;Академгородок,</p>
+            <p>ул. В.Степанченко&nbsp;4-Б,</p>
+        </div>
+    </div>
+
+    <div class="work col-sm-2">
+        <p>График работы:</p>
+        <div>
+            <p><span>с 09:00 до 18:00</span></p>
+            <p><span>Сб:</span> с 09.00 до 16.00,</p>
+            <p><span>Вс:</span> выходной</p>
+        </div>
+    </div>
+
+    <div class="contacts col-sm-3">
+        <p>Контакты:</p>
+        <div>
+            <p><span>(044)&nbsp;221-65-54</span><span>(098)&nbsp;956-05-07</span></p>
+            <p><span>(094)&nbsp;821-65-54</span><span>(063)&nbsp;610-13-95</span></p>
+        </div>
+    </div>
+
+</div>
+<nav class="navbar navbar-default navbar-static-top first-nav">
+    <div class="container">
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <?php
+                $active_main = Request::url() == '/' ? 'active' : '';
+                $active_services = Request::url() == '/services/' ? 'active' : '';
+                $active_prices = Request::url() == '/prices/' ? 'active' : '';
+                $active_contacts = Request::url() == '/contacts/' ? 'active' : '';
+                $active_register = Request::url() == '/register/' ? 'active' : '';
+                ?>
+                <li {{$active_main}}><a href="{{url('/')}}">Главная</a></li>
+                <li {{$active_services}}><a href="{{url('/services/')}}">Услуги</a></li>
+                <li {{$active_prices}}><a href="{{url('/prices/')}}">Цены</a></li>
+                <li {{$active_contacts}}><a href="{{url('/contacts/')}}">Контакты</a></li>
+                <li {{$active_register}}><a href="{{url('/register/')}}">Запись на СТО</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
     @yield('content')
 
-    <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+
 </body>
 </html>

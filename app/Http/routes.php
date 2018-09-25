@@ -24,17 +24,27 @@
 
 Route::group(['middleware' => ['web']], function () {
 
-    Route::get('/', function () {
-        return view('welcome');
-    })->middleware('guest');
+    Route::get('/','MainController@index')->middleware('guest');
+    Route::get('/services','ServiceController@index');
+    Route::get('/prices','ServiceController@prices');
 
     Route::get('/admin/', function () {
         return view('admin');
     })->middleware('auth');
 
-    Route::get('/tasks', 'TaskController@index');
-    Route::post('/task', 'TaskController@store');
-    Route::delete('/task/{task}', 'TaskController@destroy');
+    Route::resource('admin/services', 'Admin\AdminServiceController');
+    Route::resource('admin/orders', 'Admin\AdminOrderController');
+    Route::patch('admin/services/{services}/updateImg', 'Admin\AdminServiceController@updateImg');
+
+//    Route::get('/admin/pages', 'Admin\PageController@index');
+//    Route::get('/admin/page', 'Admin\PageController@store');
+//    Route::post('/admin/page', 'Admin\PageController@store');
+//    Route::get('/admin/page/{page}', 'Admin\PageController@edit');
+//    Route::patch('/admin/page/{page}', 'Admin\PageController@edit');
+//    Route::delete('/admin/page/{page}', 'Admin\PageController@destroy');
+//    Route::get('/tasks', 'TaskController@index');
+//    Route::post('/task', 'TaskController@store');
+//    Route::delete('/task/{task}', 'TaskController@destroy');
 
     Route::auth();
 

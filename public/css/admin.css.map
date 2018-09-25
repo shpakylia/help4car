@@ -1,0 +1,1 @@
+{"version":3,"sources":["admin.scss"],"names":[],"mappings":"AAAA;EACE,iBAAiB,EAClB;;AACD;EACE,kBAAkB,EACnB","file":"admin.css","sourcesContent":["li{\n  list-style: none;\n}\n.m-l-15{\n  margin-left: 15px;\n}"]}

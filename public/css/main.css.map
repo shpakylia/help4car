@@ -1,0 +1,1 @@
+{"version":3,"sources":["main.scss"],"names":[],"mappings":"AAAA;EACE,sBAAsB,EACvB","file":"main.css","sourcesContent":[".bar{\n  display: inline-block;\n}\n"]}
