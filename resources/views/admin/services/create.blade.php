@@ -1,12 +1,10 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container">
-        {!! Form::open(['url'=> 'admin/services', 'enctype'=>'multipart/form-data']) !!}
-        @include ('admin.services.form',['submitText' => 'Создать'])
+    {!! Form::open(['url'=> 'admin/services', 'enctype'=>'multipart/form-data']) !!}
+    @include ('admin.services.form',['submitText' => 'Создать'])
 
-        {!! Form::close() !!}
+    {!! Form::close() !!}
 
-        @include ('errors.list')
-    </div>
+    @include ('errors.list')
 @endsection

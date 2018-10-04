@@ -15,11 +15,11 @@ class CreateVisitorsTable extends Migration
         Schema::create('visitors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('last_name');
             $table->string('gender',45);
-            $table->integer('phone');
+            $table->string('phone', 15);
             $table->string('email',155);
             $table->text('notice');
+            $table->integer('modal_id')->unsigned();
             $table->timestamps();
         });
     }

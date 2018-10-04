@@ -39,6 +39,7 @@ class AdminServiceController extends Controller
 
     public function store(Requests\ServiceRequest $request){
         Service::create($request->all());
+        flash('Услуга <b>'. $request->title .'</b> успешно создана')->success();
         return redirect('admin/services');
     }
 

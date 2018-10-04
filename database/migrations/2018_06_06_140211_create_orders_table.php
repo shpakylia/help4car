@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->integer('parts_price');
             $table->integer('full_price');
             $table->string('status',55);
-            $table->integer('service_id')->unsigned();
+            $table->timestamp('date');
             $table->integer('visitor_id')->unsigned();
             $table->integer('modal_id')->unsigned();
             $table->timestamps();

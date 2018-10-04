@@ -38,4 +38,12 @@ class Service extends Model
         return $this->where('parent_id', 0)->with('serviceCategory')->get();
     }
 
+    public function childsServices(){
+        return $this->where('parent_id', '<>', 0)->get();
+    }
+
+    public function order(){
+        return $this->belongsToMany('App\Order');
+    }
+
 }

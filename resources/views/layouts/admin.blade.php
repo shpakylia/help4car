@@ -14,13 +14,21 @@
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
+    <!--full calendar css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css">
+
+    <!-- JavaScripts -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!-- Mobiscroll JS and CSS Includes -->
+    <link rel="stylesheet" href="{{asset('css/mobiscroll.javascript.min.css')}}">
+    <script src="{{asset('js/mobiscroll.javascript.min.js')}}"></script>
+
     <link href="{{asset('css/admin.css')}}" rel="stylesheet">
 
-    <script
-            src="https://code.jquery.com/jquery-3.3.1.js"
-            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-            crossorigin="anonymous"></script>
-{{--     <link href="{{ elixir('css/app.css') }}" rel="stylesheet">--}}
 
     <style>
         body {
@@ -52,6 +60,9 @@
                 <a class="navbar-brand" href="{{ url('/admin/services') }}">
                     Услуги
                 </a>
+                <a class="navbar-brand" href="{{ url('/admin/orders') }}">
+                    Управление клиентами
+                </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -80,13 +91,19 @@
             </div>
         </div>
     </nav>
+    <div class="container">
+        @include('flash::message')
+        @yield('content')
+    </div>
+    <script>
+        $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+    </script>
 
-    @yield('content')
 
-    <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="{{ url('js/admin.js') }}"></script>
+    <!--full calendar js -->
+    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>--}}
+
+    <script src="{{asset('js/admin.js') }}"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 </body>
 </html>

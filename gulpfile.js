@@ -17,6 +17,7 @@ elixir(function(mix) {
     mix.sass('app.scss');
     mix.sass('admin.scss');
     mix.styles(['app.css'],null, 'public/css');
+    mix.scripts('admin.js');
 
     mix.version('public/css/all.css');
 });

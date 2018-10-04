@@ -41,4 +41,3 @@ $(document).ready(function () {
 //                 '_token': '<?php echo csrf_token() ?>',
 //                 'brand_id': brand_id
 //             },
-//# sourceMappingURL=admin.js.map

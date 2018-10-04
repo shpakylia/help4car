@@ -36,6 +36,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('admin/orders', 'Admin\AdminOrderController');
     Route::patch('admin/services/{services}/updateImg', 'Admin\AdminServiceController@updateImg');
 
+    Route::post('admin/ajax/modals', 'Admin\AdminAjaxController@modals');
+    Route::get('admin/ajax/modals', 'Admin\AdminAjaxController@modals');
+
 //    Route::get('/admin/pages', 'Admin\PageController@index');
 //    Route::get('/admin/page', 'Admin\PageController@store');
 //    Route::post('/admin/page', 'Admin\PageController@store');
