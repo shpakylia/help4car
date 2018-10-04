@@ -12,22 +12,20 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
 
     <!-- Styles -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
 
-    <!--full calendar css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css">
-
-    <!-- JavaScripts -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <!-- Mobiscroll JS and CSS Includes -->
     <link rel="stylesheet" href="{{asset('css/mobiscroll.javascript.min.css')}}">
-    <script src="{{asset('js/mobiscroll.javascript.min.js')}}"></script>
+
+
+    <!--full calendar css -->
+    <link rel="stylesheet" href="{{asset('fullcalendar/fullcalendar.min.css')}}">
 
     <link href="{{asset('css/admin.css')}}" rel="stylesheet">
+
+    {{--js--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 
     <style>
@@ -44,14 +42,6 @@
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
-
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/admin/pages') }}">
@@ -95,13 +85,23 @@
         @include('flash::message')
         @yield('content')
     </div>
+
+    <!-- JavaScripts -->
+    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>--}}
+{{--    <script src="{{asset('js/jquery.min.js')}}"></script>--}}
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <script src="{{asset('js/mobiscroll.javascript.min.js')}}"></script>
+
     <script>
         $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
     </script>
 
 
     <!--full calendar js -->
-    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>--}}
+    <script src="{{asset('fullcalendar/lib/moment.min.js')}}"></script>
+    <script src="{{asset('fullcalendar/fullcalendar.min.js')}}"></script>
+    <script src="{{asset('fullcalendar/locale/ru.js')}}"></script>
 
     <script src="{{asset('js/admin.js') }}"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}

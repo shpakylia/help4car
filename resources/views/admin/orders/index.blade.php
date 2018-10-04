@@ -2,34 +2,38 @@
 
 @section('content')
     <a href="{{url('admin/orders/create')}}" class="btn btn-primary">Добавить заказ</a>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>дата</th>
-                <th>информация</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
+    <div id="calendar"></div>
+    <script>
+        $(document).ready(function () {
+            $('#calendar').fullCalendar({
+                events: [
+                        @foreach ($orders as $order)
 
 
-        @foreach($orders as $order)
-            <tr>
-                <td>
-                    {{$order->id}}
-                </td>
-                <td>
-                    {{$order->date}}
-                </td>
-                <td>
-                    {{$order->notice}}
-                </td>
-                <td>
-                    <a href="{{url('admin/orders/'.$order->id.'/edit')}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-                </td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
+                    {
+                        id: '{{ $order->id }}',
+                        title: '{{ $order->notice }}',
+                        start: '{{ $order->date }}',
+                        backgroundColor: @if($order->status == 'reserve')
+                                            '{{ $backgroundColor = 'blue'}}'
+                                            @elseif($order->status == 'open')
+                                            '{{ $backgroundColor = 'yellow'}}'
+                                            @elseif($order->status == 'close')
+                                            '{{ $backgroundColor = 'green'}}'
+                                            @elseif($order->status == 'cancel')
+                                            '{{ $backgroundColor = 'red' }}'
+                                        @endif
+
+                    },
+                        @endforeach
+                ],
+                eventClick: function(calEvent, jsEvent, view) {
+                    window.location.replace("{{url('admin/orders/')}}"+"/"+calEvent.id+"/edit");
+
+                }
+            });
+        })
+
+    </script>
 @endsection
+
