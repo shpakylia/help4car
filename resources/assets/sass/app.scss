@@ -3,8 +3,13 @@ $grey: #666;
 $blue: #004e99;
 $orange: #f07122;
 
+#app-layout{
+  background: url("/img/background/back_main_page.jpg") center no-repeat;
+  background-size: cover;
+}
 h1{
   font-size: 32px;
+  color: $orange;
 }
 h2{
   font-size: 28px;
@@ -15,6 +20,7 @@ h3{
 h4{
   font-size: 18px;
 }
+
 a, p, span{
   font-size: 16px;
   font-family: Arial;
@@ -62,7 +68,7 @@ a, p, span{
 
   }
   div{
-    border: 1px dashed $gold;
+    //border: 1px dashed $gold;
     padding: 5px;
     span{
       font-weight: bold;
@@ -91,15 +97,16 @@ a, p, span{
       float: none;
       display: inline-block;
       a{
-        color: $grey;
-        text-shadow:  1px 0 $grey;
+        color: $blue;
+        text-shadow:  1px 0 $blue;
+        letter-spacing: 1px;
 
       }
-      a:hover{
-        color: $grey;
-        text-shadow:  1px 0 $gold;
-
-      }
+      //a:hover{
+      //  color: $grey;
+      //  text-shadow:  1px 0 $gold;
+      //
+      //}
     }
   }
 }

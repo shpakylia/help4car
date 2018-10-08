@@ -12,7 +12,7 @@
 
                     {
                         id: '{{ $order->id }}',
-                        title: '{{ $order->notice }}',
+                        title: '{{ isset($order->visitor->modal->name) ? $order->visitor->modal->name : '' }} | {{ isset($order->visitor->name) ? $order->visitor->name : '' }}',
                         start: '{{ $order->date }}',
                         backgroundColor: @if($order->status == 'reserve')
                                             '{{ $backgroundColor = 'blue'}}'

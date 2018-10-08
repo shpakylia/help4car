@@ -21,6 +21,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
+
     @yield('inside_css')
     <style>
         body {
@@ -80,15 +81,15 @@
                 <li {{$active_main}}><a href="{{url('/')}}">Главная</a></li>
                 <li {{$active_services}}><a href="{{url('/services/')}}">Услуги</a></li>
                 <li {{$active_prices}}><a href="{{url('/prices/')}}">Цены</a></li>
-                <li {{$active_contacts}}><a href="{{url('/contacts/')}}">Контакты</a></li>
-                <li {{$active_register}}><a href="{{url('/register/')}}">Запись на СТО</a></li>
+                <li {{$active_contacts}}><a href="{{url('/contacts')}}">Контакты</a></li>
+                <li {{$active_register}}><a href="{{url('/orders')}}">Запись на СТО</a></li>
             </ul>
         </div>
     </div>
 </nav>
-
+<div class="container">
     @yield('content')
-
-
+</div>
 </body>
+
 </html>

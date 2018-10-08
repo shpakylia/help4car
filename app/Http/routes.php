@@ -27,6 +27,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/','MainController@index')->middleware('guest');
     Route::get('/services','ServiceController@index');
     Route::get('/prices','ServiceController@prices');
+    Route::get('/orders','OrderController@index');
+    Route::post('/orders','OrderController@store');
+    Route::get('/contacts','ContactController@index');
 
     Route::get('/admin/', function () {
         return view('admin');
@@ -34,10 +37,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::resource('admin/services', 'Admin\AdminServiceController');
     Route::resource('admin/orders', 'Admin\AdminOrderController');
-    Route::patch('admin/services/{services}/updateImg', 'Admin\AdminServiceController@updateImg');
+    Route::patch('admin/services/{services}/updateImg', 'Admin\AdminServiceController@updateImg')->middleware('auth');
 
-    Route::post('admin/ajax/modals', 'Admin\AdminAjaxController@modals');
-    Route::get('admin/ajax/modals', 'Admin\AdminAjaxController@modals');
+    Route::post('admin/ajax/modals', 'Admin\AdminAjaxController@modals')->middleware('auth');
 
 //    Route::get('/admin/pages', 'Admin\PageController@index');
 //    Route::get('/admin/page', 'Admin\PageController@store');

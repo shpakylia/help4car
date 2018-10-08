@@ -26,20 +26,5 @@ class Visitor extends Model
         }
         return null;
     }
-//    public function createVisitor($date){
-//        if(!empty($date['phone'])){
-//            $visitor = $this->where('phone', 'like', $date['phone'])->update($date);
-//            if(!is_null($visitor)){
-//                var_dump($visitor->toArray());
-//                 $visitor->update($date);
-//                 return true;
-//            }
-//        }
-//        $this->create($date);
-//        return true;
-
-//    }
-
-
 
 }

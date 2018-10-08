@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="{{asset('css/hoverEffect.css')}}">
 @endsection
 @section('content')
-    <div class="container">
         <div class="grid">
             @foreach ($cats as $cat)
             <figure class="effect-ming">
@@ -18,6 +17,5 @@
             @endforeach
 
         </div>
-    </div>
 @endsection
 

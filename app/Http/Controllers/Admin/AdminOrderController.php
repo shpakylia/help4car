@@ -15,6 +15,11 @@ use App\Brand;
 
 class AdminOrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     //
     public function index(Request $request, Order $order){
         $orders = $order::latest()->get();
@@ -32,7 +37,15 @@ class AdminOrderController extends Controller
         return view('admin.orders.create', compact('brands', 'modals', 'allServices'));
     }
 
-    public function store(Order $order, Requests\OrderRequest $request){
+    public function store(Order $order, Request $request){
+
+        $this->validate($request, [
+            'notice'=>'required',
+            'visiitor.name'=>'required',
+            'visiitor.phone'=>'required',
+        ]);
+
+
         $order = $order->create($request->all());
         //update or create visitor
         $visitorObj = new Visitor();
@@ -60,20 +73,31 @@ class AdminOrderController extends Controller
 
         // get visitor data
         $visitor = $order->visitor;
-        $modal = $visitor->modal;
-        $brand = $modal->brand;
+        if($visitor->count() > 0) {
+            $modal = $visitor->modal;
+            if($modal !== null){
+                $brand = $modal->brand;
+            }else{
+                $brand = Brand::find(1);
+            }
+//            var_dump($brand);
 
-        // get all modal by brand
-        $modals = $brand->modals->lists('title', 'id');
-
+            // get all modal by brand
+            $modals = $brand->modals->lists('title', 'id');
+        }
         // get all brands
         $brands =$order->brandList();
 
         return view('admin.orders.edit', compact('order', 'allServices', 'visitor', 'brands', 'modals', 'brand'));
     }
 
-    public function update(Order $order, Requests\OrderRequest $request){
+    public function update(Order $order, Request $request){
 
+        $this->validate($request, [
+            'notice'=>'required',
+            'visiitor.name'=>'required',
+            'visiitor.phone'=>'required',
+            ]);
         //update order data
         $order->update($request->all());
 

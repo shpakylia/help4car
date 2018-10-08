@@ -14,6 +14,7 @@ class AdminServiceController extends Controller
 
     public function __construct(Service $model){
         $this->model = $model;
+        $this->middleware('auth');
 
     }
     /*

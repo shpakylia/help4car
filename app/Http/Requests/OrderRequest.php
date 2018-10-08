@@ -25,8 +25,16 @@ class OrderRequest extends Request
     {
         return [
             'notice'=> 'required',
-            'visitor.name'=> 'min:3|required',
-            'visitor.phone'=> 'min:10|required',
+            'name'=> 'required|min:3',
+            'phone'=> 'required|numeric|regex:(0[0-9]{9})',
+        ];
+    }
+
+    public function attributes(){
+        return [
+            'notice' => 'Дополнительная иформация',
+            'name' => 'Имя',
+            'phone' => 'Телефон'
         ];
     }
 }
