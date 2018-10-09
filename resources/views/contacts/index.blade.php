@@ -1,4 +1,4 @@
-@extends('layouts.app');
+@extends('layouts.app')
 @section('content')
     <div class="row">
             <h1>Наши контакты:</h1>

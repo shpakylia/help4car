@@ -16,8 +16,7 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->string('title',255);
             $table->text('text');
-            $table->boolean('is_active');
-            $table->string('type',55);
+            $table->boolean('is_active')->default(true);
             $table->integer('page_id')->unsigned();
             $table->timestamps();
         });

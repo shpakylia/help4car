@@ -47,6 +47,9 @@
                 <a class="navbar-brand" href="{{ url('/admin/pages') }}">
                     Страницы
                 </a>
+                <a class="navbar-brand" href="{{ url('/admin/posts') }}">
+                    Cтатьи
+                </a>
                 <a class="navbar-brand" href="{{ url('/admin/services') }}">
                     Услуги
                 </a>

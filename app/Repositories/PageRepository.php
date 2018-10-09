@@ -23,4 +23,9 @@ class PageRepository
                     ->orderBy('order', 'asc')
                     ->get();
     }
+    public static function isExist($alias)
+    {
+        return Page::where('alias', $alias)
+                    ->get();
+    }
 }

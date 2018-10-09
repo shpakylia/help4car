@@ -18,7 +18,6 @@ elixir(function(mix) {
     mix.sass('admin.scss');
     mix.styles(['app.css'],null, 'public/css');
     mix.scripts('admin.js');
-    mix.scripts('map.js');
 
     mix.version('public/css/all.css');
 });

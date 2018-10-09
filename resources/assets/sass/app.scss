@@ -2,11 +2,8 @@ $gold: #FFD700;
 $grey: #666;
 $blue: #004e99;
 $orange: #f07122;
+$white: #FFF;
 
-#app-layout{
-  background: url("/img/background/back_main_page.jpg") center no-repeat;
-  background-size: cover;
-}
 h1{
   font-size: 32px;
   color: $orange;
@@ -25,45 +22,53 @@ a, p, span{
   font-size: 16px;
   font-family: Arial;
 }
-.second-nav{
-  margin-bottom: 0!important;
-  ul{
-    float: right;
-    font-size: 12px;
-  }
-}
-.brand{
-  text-align: center;
-  //  padding: 20px;
-  //background: url("/img/four.png") no-repeat center;
-  background-size: contain;
-  font-size: 32px;
-  text-transform: uppercase;
-  color: $gold;
-  text-shadow:  1px 2px 2px $grey;
-  margin: 10px;
 
-  p:first-of-type{
-    //      color: #3C769D;
-    text-align: left;
-  }
-  p:last-of-type{
-    //      color: blueviolet;
-    text-align: right;
-    margin-bottom: -5px!important;
+#app-layout{
+  background: url("/img/background/back_main_page.jpg") center no-repeat;
+  background-size: cover;
 
+  .navbar-default{
+    background-color: $blue;
+    a {
+      padding: 20px;
+      color: $white;
+      font-size: 18px;
+      font-weight: 500;
+      &:hover{
+        background-color: $white;
+        color: $blue;
+      }
+    }
+    li.active{
+      a{
+        background-color: $white;
+        color: $blue;
+      }
+    }
+  }
+  .header{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+  }
+  .header-col {
+    .brand_img {
+      height: 100px;
+    }
   }
 
 }
 .location,.work, .contacts{
-  margin: 10px;
+  //margin: 10px;
   text-align: center;
   >p{
     text-transform: uppercase;
     color: $grey;
     //    text-shadow:  1px 2px 2px #666;
     font-weight: bold;
-    text-align: center;
+    //text-align: center;
     //      border-bottom: 1px dashed;
 
   }
@@ -81,32 +86,19 @@ a, p, span{
 }
 .contacts{
   div{
+    background: url("/img/icons/phone.png") left no-repeat;
+    background-size: 45px;
     padding: 5px 0;
     >p{
-      padding-bottom: 10px;
-    }
-  }
-}
-.first-nav{
-  .navbar-nav{
-    float: none;
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 18px;
-    li {
-      float: none;
-      display: inline-block;
-      a{
-        color: $blue;
-        text-shadow:  1px 0 $blue;
-        letter-spacing: 1px;
-
+      padding-bottom: 5px;
+      padding-top: 5px;
+      text-align: left;
+      span{
+        padding-left: 30px;
       }
-      //a:hover{
-      //  color: $grey;
-      //  text-shadow:  1px 0 $gold;
-      //
-      //}
+      span:first-child{
+        padding-left: 60px;
+      }
     }
   }
 }
@@ -114,21 +106,26 @@ a, p, span{
 
 
 
-@media (max-width: 1200px){
-  .brand{
-    padding-left: 0!important;
-    padding-right: 0!important;
-  }
-}
-
-@media (max-width: 1024px){
-  .brand{
-    padding-left: 0!important;
-    padding-right: 0!important;
-    //    font-size: 22px;
-    p{
-      padding: 10px;
+@media (max-width: 1600px){
+  .contacts {
+    > p {
+      span {
+        display: inline-block;
+        padding-left: 60px;
+      }
     }
   }
+
 }
+//@media (max-width: 1200px){
+//
+//
+//}
+//
+//@media (max-width: 1024px){
+//
+//    p{
+//      padding: 10px;
+//    }
+//}
 

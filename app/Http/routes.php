@@ -35,6 +35,8 @@ Route::group(['middleware' => ['web']], function () {
         return view('admin');
     })->middleware('auth');
 
+    Route::resource('admin/pages', 'Admin\AdminPageController');
+    Route::resource('admin/posts', 'Admin\AdminPostController');
     Route::resource('admin/services', 'Admin\AdminServiceController');
     Route::resource('admin/orders', 'Admin\AdminOrderController');
     Route::patch('admin/services/{services}/updateImg', 'Admin\AdminServiceController@updateImg')->middleware('auth');

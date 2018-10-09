@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    {!! Form::model($page, ['method' => "PATCH", 'url' => 'admin/pages/'.$page->id]) !!}
+    {!! Form::open(['method' => "POST", 'url' => 'admin/pages']) !!}
     @include('admin.pages.form')
     {!! Form::close() !!}
     @include ('errors.list')

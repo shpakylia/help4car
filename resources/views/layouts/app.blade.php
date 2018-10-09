@@ -34,62 +34,68 @@
     </style>
 </head>
 <body id="app-layout">
-<div class="container-fluid">
-    <a href="/">
-        <div class="brand col-sm-2">
-               <img  class="brand_img" src="{{asset('img/help4car_logo.svg')}}" alt="brand">
-        </div>
-    </a>
-    <div class="location col-sm-offset-1 col-sm-2">
-        <p>Где мы:</p>
-        <div>
-            <p>г.&nbsp;Киев,</p>
-            <p>м.&nbsp;Академгородок,</p>
-            <p>ул. В.Степанченко&nbsp;4-Б,</p>
+    <div class="container-fluid">
+        <div class="header">
+            <div class="header-col brand col-sm-4 col-lg-3">
+                <a href="/">
+                   <img  class="brand_img" src="{{asset('img/help4car_logo.svg')}}" alt="brand">
+                </a>
+            </div>
+
+            {{--</a>--}}
+            {{--<div class="location col-sm-offset-1 col-sm-2">--}}
+                {{--<div>--}}
+                    {{--<p>г.&nbsp;Киев,</p>--}}
+                    {{--<p>м.&nbsp;Академгородок,</p>--}}
+                    {{--<p>ул. В.Степанченкa&nbsp;4-Б,</p>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+
+            {{--<div class="work col-sm-2">--}}
+                {{--<p>График работы:</p>--}}
+                {{--<div>--}}
+                    {{--<p><span>с 09:00 до 18:00</span></p>--}}
+                    {{--<p><span>Сб:</span> с 09.00 до 16.00,</p>--}}
+                    {{--<p><span>Вс:</span> выходной</p>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+
+            <div class="header-col contacts col-sm-6 col-lg-3">
+                <div>
+                    <p>
+                        <span>{{config('app.phones.0')}}</span>
+                        <span>{{config('app.phones.2')}}</span>
+                    </p>
+                    <p>
+                        <span>{{config('app.phones.1')}}</span>
+                        <span>{{config('app.phones.3')}}</span>
+                    </p>
+                </div>
+            </div>
+            <div class="header-col col-sm-1">
+                <a href="#" class="btn btn-primary">Перезвонить?</a>
+            </div>
         </div>
     </div>
 
-    <div class="work col-sm-2">
-        <p>График работы:</p>
-        <div>
-            <p><span>с 09:00 до 18:00</span></p>
-            <p><span>Сб:</span> с 09.00 до 16.00,</p>
-            <p><span>Вс:</span> выходной</p>
+    <nav class="navbar navbar-default navbar-static-top first-nav">
+        <div class="container">
+            <div id="navbar" class="collapse navbar-collapse">
+                <div class="col-md-10 col-md-offset-1">
+                    <ul class="nav navbar-nav">
+                    @foreach(config('app.pages') as $pageUrl=>$pageTitle)
+                        <li {{($pageUrl== Request::path() ? 'class = "active"' : '')}}><a href="{{url($pageUrl)}}">{{$pageTitle}}</a></li>
+                    @endforeach
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div>
-
-    <div class="contacts col-sm-3">
-        <p>Контакты:</p>
-        <div>
-            <p><span>(044)&nbsp;221-65-54</span><span>(098)&nbsp;956-05-07</span></p>
-            <p><span>(094)&nbsp;821-65-54</span><span>(063)&nbsp;610-13-95</span></p>
-        </div>
-    </div>
-
-</div>
-<nav class="navbar navbar-default navbar-static-top first-nav">
+    </nav>
     <div class="container">
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <?php
-                $active_main = Request::url() == '/' ? 'active' : '';
-                $active_services = Request::url() == '/services/' ? 'active' : '';
-                $active_prices = Request::url() == '/prices/' ? 'active' : '';
-                $active_contacts = Request::url() == '/contacts/' ? 'active' : '';
-                $active_register = Request::url() == '/register/' ? 'active' : '';
-                ?>
-                <li {{$active_main}}><a href="{{url('/')}}">Главная</a></li>
-                <li {{$active_services}}><a href="{{url('/services/')}}">Услуги</a></li>
-                <li {{$active_prices}}><a href="{{url('/prices/')}}">Цены</a></li>
-                <li {{$active_contacts}}><a href="{{url('/contacts')}}">Контакты</a></li>
-                <li {{$active_register}}><a href="{{url('/orders')}}">Запись на СТО</a></li>
-            </ul>
+        <div class="col-md-10 col-md-offset-1">
+            @yield('content')
         </div>
     </div>
-</nav>
-<div class="container">
-    @yield('content')
-</div>
 </body>
 
 </html>

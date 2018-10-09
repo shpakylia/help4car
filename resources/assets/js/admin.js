@@ -37,7 +37,3 @@ $(document).ready(function () {
         })
     })
 });
-// data: {
-//                 '_token': '<?php echo csrf_token() ?>',
-//                 'brand_id': brand_id
-//             },
