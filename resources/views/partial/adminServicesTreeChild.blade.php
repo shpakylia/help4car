@@ -3,7 +3,7 @@
         <tr>
             <td class="table-text"><a class="m-l-15" href="{{ url('admin/services/'.$childService->id.'/edit') }}">{{ $childService->title }}</a></td>
 
-            <!-- Task Delete Button -->
+            <!-- service Delete Button -->
             <td>
                 {!! Form::open(['url'=> 'admin/services/' . $childService->id, 'method'=>'DELETE']) !!}
 

@@ -2,7 +2,10 @@
 
 @section('content')
     <a href="{{url('admin/orders/create')}}" class="btn btn-primary">Добавить заказ</a>
+    <!-- block for full calendar script -->
     <div id="calendar"></div>
+
+    <!-- fill calendar -->
     <script>
         $(document).ready(function () {
             $('#calendar').fullCalendar({
@@ -27,6 +30,7 @@
                     },
                         @endforeach
                 ],
+                // event of edit order
                 eventClick: function(calEvent, jsEvent, view) {
                     window.location.replace("{{url('admin/orders/')}}"+"/"+calEvent.id+"/edit");
 

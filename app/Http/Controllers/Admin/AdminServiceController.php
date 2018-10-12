@@ -6,56 +6,80 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
 use App\Service;
 
+/**
+ * Class to work with services
+ *
+ * Class AdminServiceController
+ * @package App\Http\Controllers\Admin
+ */
 class AdminServiceController extends Controller
 {
-    protected $model;
-
-    public function __construct(Service $model){
-        $this->model = $model;
+    /**
+     * AdminServiceController constructor.
+     */
+    public function __construct(){
         $this->middleware('auth');
 
     }
-    /*
-     Show all services
 
+    /**
+     * Get tree of service. Tree contain parent category and children category.
+     *
+     * @param Request $request
+     * @param Service $service
+     * @uses Service::rootServices() to get all services
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Request $request, Service $service){
         $rootServices = $service->rootServices();
         return view('admin.services.index', ['services' => $rootServices]);
     }
 
-    /*
-     * create new service
-     * */
-
-    public function create(){
-        $parentsSelect =$this->model->getParentsSelect();
+    /**
+     * Create new Service
+     *
+     * @uses Service::getParentsSelect() get all parent servicec with parent_id = 0
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function create(Service $service){
+        $parentsSelect =$service->getParentsSelect();
         return view('admin.services.create', ['parentsSelect' => $parentsSelect]);
     }
 
-    /* save service
-    */
-
+    /**
+     * Store new Service
+     *
+     * @param Requests\ServiceRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store(Requests\ServiceRequest $request){
         Service::create($request->all());
         flash('Услуга <b>'. $request->title .'</b> успешно создана')->success();
         return redirect('admin/services');
     }
 
-    /*
-     * edit service
+    /**
+     * Edit Service by ID
+     *
+     * @uses Service::getParentsService() to get array of services ids for select
+     * @param Service $service
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-
     public function edit(Service $service){
-        $parentsSelect = $this->model->getParentsSelect($service->id);
-        return view('admin.services.edit', ['service' => $service, 'parentsSelect' => $parentsSelect]);
+        $parentsSelect = $service->getParentsService();
+        return view('admin.services.edit', compact('service', 'parentsSelect'));
     }
-    /*
-     * update service
-     */
 
+    /**
+     * Update service by ID
+     *
+     * @param Service $service
+     * @param Requests\ServiceRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function update(Service $service, Requests\ServiceRequest $request){
         $service->update($request->all());
         return redirect('admin/services');
@@ -63,7 +87,14 @@ class AdminServiceController extends Controller
 
     }
 
-    public function updateImg(Service $service, Request $request){
+    /**
+     * Destroy image by current service
+     *
+     * @param Service $service
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function destroyImg(Service $service, Request $request){
         $service->img = '';
         $service->save();
         return redirect('admin/services/'.$service->id.'/edit');
@@ -71,10 +102,15 @@ class AdminServiceController extends Controller
 
     }
 
-    /*destroy service*/
-
+    /**
+     * Delete Service by ID
+     *
+     * @param Service $service
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function destroy(Service $service, Request $request){
-        $service->where('id',$service->id)->delete();
+        $service->delete();
         return redirect('admin/services');
     }
 

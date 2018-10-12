@@ -5,7 +5,7 @@
         <a class="btn btn-primary" href="{{ url('admin/services/create') }}">  <i class="fa fa-btn fa-plus"></i>Добавить Услугу</a>
     </div>
     <div class="col-xs-12">
-        <!-- Current Pages -->
+        <!-- Services tree -->
         @if (isset($services) && count($services) > 0)
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -23,7 +23,7 @@
                             <tr>
                                 <td class="table-text"><a href="{{ url('admin/services/'.$service->id.'/edit') }}">{{ $service->title }}</a></td>
 
-                                <!-- Task Delete Button -->
+                                <!-- Service Delete Button -->
                                 <td>
                                     {!! Form::open(['url'=> 'admin/services/' . $service->id, 'method'=>'DELETE']) !!}
 
@@ -33,6 +33,8 @@
                                     {!! Form::close() !!}
                                 </td>
                             </tr>
+
+                            <!-- display child service -->
                             @if($service->serviceCategory->count() > 0)
                                 @include('partial.adminServicesTreeChild',['childServices' => $service->serviceCategory])
 

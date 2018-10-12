@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <!-- New Task link -->
+        <!-- New Post link -->
         <div class="col-xs-12">
             <a class="btn btn-primary" href="{{ url('admin/posts/create') }}">  <i class="fa fa-btn fa-plus"></i>Добавить статью</a>
         </div>
@@ -23,7 +23,7 @@
                                     <td class="table-text"><a href="{{ url('admin/posts/'.$post->id."/edit") }}">{{ $post->title }}</a></td>
                                     <td class="table-text">{{ $post->page->title }}</td>
 
-                                    <!-- Task Delete Button -->
+                                    <!-- Post Delete Button -->
                                     <td>
                                         <form action="{{url('admin/posts/' . $post->id)}}" method="POST">
                                             {{ csrf_field() }}

@@ -6,8 +6,10 @@
 
     {!! Form::close() !!}
 
+
+    <!-- add form to delete img -->
     @if($service->img)
-        {!! Form::open(['method'=>'PATCH', 'action'=> ['Admin\AdminServiceController@updateImg', $service->id] ]) !!}
+        {!! Form::open(['method'=>'PATCH', 'action'=> ['Admin\AdminServiceController@destroyImg', $service->id] ]) !!}
 
         <!-- Form input hidden with id-->
 

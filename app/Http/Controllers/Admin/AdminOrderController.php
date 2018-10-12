@@ -7,29 +7,58 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Repositories\OrderRepository;
 use App\Order;
 use App\Service;
 use App\Visitor;
 use App\Modal;
 use App\Brand;
 
+/**
+ * Class controller for work with orders
+ *
+ * Class AdminOrderController
+ * @package App\Http\Controllers\Admin
+ */
 class AdminOrderController extends Controller
 {
-    public function __construct()
+
+    /**
+     * @var OrderRepository
+     */
+    protected $model;
+
+    /**
+     * AdminOrderController constructor.
+     */
+    public function __construct(OrderRepository $model)
     {
+        $this->model = $model;
         $this->middleware('auth');
     }
 
-    //
+    /**
+     * Get all orders
+     *
+     * @uses OrderRepository::orderByLastMonth()
+     * @param Request $request
+     * @param Order $order
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(Request $request, Order $order){
-        $orders = $order::latest()->get();
+        $orders = $this->model->orderByLastMonth();
         return view('admin.orders.index', ['orders' => $orders]);
     }
 
+    /**
+     * Create Order
+     *
+     * @param Order $order
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create(Order $order){
-        $allServices = $order->allServices();
+        $allServices = Service::childsServices()->lists('title', 'id');;
 
-        // get all brands
         $brands =$order->brandList();
 
         // get all modal by brand
@@ -37,6 +66,11 @@ class AdminOrderController extends Controller
         return view('admin.orders.create', compact('brands', 'modals', 'allServices'));
     }
 
+    /**
+     * @param Order $order
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store(Order $order, Request $request){
 
         $this->validate($request, [
@@ -67,6 +101,10 @@ class AdminOrderController extends Controller
 
     }
 
+    /**
+     * @param Order $order
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit(Order $order){
         // get service list for select
         $allServices = $order->allServices();
@@ -80,7 +118,6 @@ class AdminOrderController extends Controller
             }else{
                 $brand = Brand::find(1);
             }
-//            var_dump($brand);
 
             // get all modal by brand
             $modals = $brand->modals->lists('title', 'id');
@@ -91,6 +128,11 @@ class AdminOrderController extends Controller
         return view('admin.orders.edit', compact('order', 'allServices', 'visitor', 'brands', 'modals', 'brand'));
     }
 
+    /**
+     * @param Order $order
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function update(Order $order, Request $request){
 
         $this->validate($request, [
@@ -115,10 +157,4 @@ class AdminOrderController extends Controller
         return redirect('admin/orders/');
 
     }
-
-
-
-
-
-
 }
