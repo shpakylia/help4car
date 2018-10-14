@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Requests\Request;
 use Illuminate\Database\Eloquent\Model;
 use App\Page;
 
@@ -24,5 +25,6 @@ class Post extends Model
     public function page(){
         return $this->belongsTo(Page::class);
     }
+
 
 }

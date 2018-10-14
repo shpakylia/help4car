@@ -92,8 +92,9 @@
         </div>
     </nav>
     <div class="container">
-        <div class="col-md-10 col-md-offset-1">
+        <div id="content" class="col-md-10 col-md-offset-1">
             @yield('content')
+            @include('posts.show')
         </div>
     </div>
 </body>

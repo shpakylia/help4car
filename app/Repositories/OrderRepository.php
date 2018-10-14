@@ -14,7 +14,7 @@ class OrderRepository
      */
     public function orderByLastMonth()
     {
-        return Page::where('date', '>', Carbon::now()->subMonth())
+        return Order::where('date', '>', Carbon::now()->subMonth())
                     ->latest()
                     ->get();
     }

@@ -58,6 +58,21 @@ a, p, span{
       height: 100px;
     }
   }
+  #content{
+    background-color: $white;
+    padding-bottom: 30px;
+    .post-title{
+      background-color: $blue;
+      color: $white;
+      text-align: center;
+      margin-left: -15px;
+      margin-right: -15px;
+      padding: 7px 0;
+    }
+    .post-text{
+      font-size: 16px;
+    }
+  }
 
 }
 .location,.work, .contacts{

@@ -21,4 +21,18 @@ class Page extends Model
         return $this->hasMany(Post::class);
     }
 
+
+
+    /**
+     * @return mixed
+     */
+    public static function postsList(){
+        $page = static::where('alias', \Request::path())->first();
+        if($page == null){
+            return $page;
+        }
+        return $page->posts()->where('is_active', '1')->get();
+    }
+
+
 }
